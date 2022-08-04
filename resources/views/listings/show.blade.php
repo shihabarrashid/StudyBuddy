@@ -19,7 +19,7 @@
 
                         <h3 class="text-2xl mb-2">{{$listing->title}}</h3>
                         <h3 class="text-2xl mb-2">Location: {{$listing->location}}</h3>
-                        <h3 class="text-2xl mb-2 fa-solid fa-mobile"> {{$listing->number}}</h3>
+                        {{-- <h3 class="text-2xl mb-2 fa-solid fa-mobile"> {{$listing->number}}</h3> --}}
                         <p>Contact only if you are eligible</p>
                         <x-listing-tags :tagsCsv="$listing->tags"></x-listing-tags>
                         <div class="border border-gray-200 w-full mb-6"></div>
@@ -33,9 +33,9 @@
                             </div>
                             {{-- <a href="{{'storage/'.$problem->p_file}}" class="underline text-green-500 hover:text-black">{{$problem->p_file ? 'Attatched File' : ''}}</a> --}}
                             
-                           {{--  @if ($problem->email != auth()->user()->email)
+                            {{-- @if ($listing->email != auth()->user()->email)
                                 <a
-                                    href="mailto:{{$problem->email}}"
+                                    href="mailto:{{$listing->email}}"
                                     class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"
                                     ><i class="fa-solid fa-envelope"></i>
                                     Contact</a

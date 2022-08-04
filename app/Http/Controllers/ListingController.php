@@ -75,9 +75,9 @@ class ListingController extends Controller
     public function update($id, Request $req)
     {
         $listing = Listing::find($id);
-        /* if ($listing->user_id != auth()->user()->id) {
+        if ($listing->user_id != auth()->user()->id) {
             abort(403, 'Unauthorized action');
-        } */
+        }
 
         $formVal = $req->validate([
             'title' => 'required|max:100',
@@ -106,10 +106,7 @@ class ListingController extends Controller
         Session::flash('msg', 'Tuition Listing Updated');
 
 
-        /* return redirect()->route('all.listing'); */
-
-        return redirect('/adminOperations/manageListing');
-        
+        return redirect()->route('all.listing'); 
     }
 
     //Show Delete Form
@@ -144,7 +141,6 @@ class ListingController extends Controller
     //Manage Listing
     public function manage()
     {
-     
         $user_id = auth()->user()->id;
         $listing = Listing::where('user_id', $user_id)->get();
         return view('listings.manage', ['listings' => $listing]);
