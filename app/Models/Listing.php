@@ -30,4 +30,10 @@ class Listing extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    //Relationship with Comment
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'listing_id');
+    }
 }

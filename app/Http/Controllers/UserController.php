@@ -119,9 +119,9 @@ class UserController extends Controller
     {
         $formVal = $req->validate(
         [
-            'name' => 'required|max:20|alpha',
+            'name' => 'required|max:30',
             'email' => 'required|email|unique:users,email|ends_with:.com,.me,.edu',
-            'password' => 'required|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/i',
+            'password' => 'required',
             'password2' => 'required|same:password'
         ],
 
@@ -129,9 +129,7 @@ class UserController extends Controller
             "name.required" => "This field is required",
             "email.required" => "This field is required",
            /*  "password.required" => "This field is required", */
-            "password2.required" => "This field is required",
-            "password2.same" => "The password doesn't match",
-            "name.max" => "Name should not exceed 10 characters"
+            "name.max" => "Name should not exceed 30 characters"
         ]
       );
 
@@ -155,22 +153,18 @@ class UserController extends Controller
     {
         $formVal = $req->validate(
             [
-                'name' => 'required|max:20|alpha',
+                'name' => 'required|max:30',
                 'email' => 'required|email|ends_with:.com,.me,.edu',
-                'password' => 'required|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/i',
+                'password' => 'required',
             ],
     
             [
                 "name.required" => "This field is required",
                 "email.required" => "This field is required",
                 "password.required" => "This field is required",
-                "name.max" => "Name should not exceed 10 characters"
+                "name.max" => "Name should not exceed 30 characters"
             ]
           );
-
-        // if ($req->hasFile('p_file')) {
-        //     $formVal['p_file'] = $req->file('p_file')->store('files', 'public');
-        // }
 
         if (Hash::check($formVal['password'], Auth::user()->password, [])) {
             $formVal['password'] = bcrypt($formVal['password']);

@@ -24,22 +24,20 @@ class TutorController extends Controller
     public function store(Request $req)
     {
         $formVal = $req->validate(
-        [
-            'name' => 'required|max:20|alpha',
-            'email' => 'required|email|unique:users,email|ends_with:.com,.me,.edu',
-            'password' => 'required|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/i',
-            'password2' => 'required|same:password'
-        ],
-
-        [
-            "name.required" => "This field is required",
-            "email.required" => "This field is required",
-            "password.required" => "This field is required",
-            "password2.required" => "This field is required",
-            "password2.same" => "The password doesn't match",
-            "name.max" => "Name should not exceed 10 characters"
-        ]
-      );
+            [
+                'name' => 'required|max:30',
+                'email' => 'required|email|ends_with:.com,.me,.edu',
+                'password' => 'required',
+                 'password2' => 'required|same:password'
+            ],
+    
+            [
+                "name.required" => "This field is required",
+                "email.required" => "This field is required",
+                "password.required" => "This field is required",
+                "name.max" => "Name should not exceed 30 characters"
+            ]
+          );
 
 
         $formVal['password'] = bcrypt($formVal['password']);
@@ -84,17 +82,16 @@ class TutorController extends Controller
     {
         $formVal = $req->validate(
             [
-                'name' => 'required|max:20|alpha',
+                'name' => 'required|max:30',
                 'email' => 'required|email|ends_with:.com,.me,.edu',
-                'password' => 'required|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/i',
-
+                'password' => 'required',
             ],
     
             [
                 "name.required" => "This field is required",
                 "email.required" => "This field is required",
                 "password.required" => "This field is required",
-                "name.max" => "Name should not exceed 10 characters"
+                "name.max" => "Name should not exceed 30 characters"
             ]
           );
 

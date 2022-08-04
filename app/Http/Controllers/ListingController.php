@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -126,11 +127,13 @@ class ListingController extends Controller
     public function show($id)
     {
         $listing = Listing::find($id);
+        $comment = Comment::where("listing_id", $id)->get();
         if ($listing) {
             return view(
                 'listings.show',
                 [
-                    'listing' => $listing
+                    'listing' => $listing,
+                    'comments' => $comment
                 ]
             );
         } else {

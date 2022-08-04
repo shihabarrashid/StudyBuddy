@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TutorController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\InformationController;
 
@@ -168,6 +169,9 @@ Route::delete('adminOperations/listings/{id}', [AdminController::class, 'deleteL
 //admin user edit
 Route::get('/admin/edit/{id}', [AdminController::class, 'edituser']);
 
+
+//Comment
+Route::post('/listings/show/{id}', [CommentController::class, 'storeComment'])->middleware('auth');
 
 
 
